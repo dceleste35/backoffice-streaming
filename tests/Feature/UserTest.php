@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Models\Subscription;
 use App\Models\User;
 use Database\Seeders\SubscriptionSeeder;
@@ -21,4 +22,16 @@ it('can have subscriptions', function () {
     expect($user->subscriptions)->toHaveCount(1);
     expect($user->subscriptions->first()->pivot->start_date)->toBeInstanceOf(Carbon::class);
     expect($user->subscriptions->first()->pivot->end_date)->toBeInstanceOf(Carbon::class);
+});
+
+it('have a role', function () {
+
+    $user = User::factory()->create();
+    $role = Role::factory()->create();
+
+    $user->update([
+        'role_id' => $role->id,
+    ]);
+
+    expect($user->role->name)->toBe('user');
 });
