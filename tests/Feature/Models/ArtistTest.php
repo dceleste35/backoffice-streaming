@@ -1,7 +1,12 @@
 <?php
 
-test('example', function () {
-    $response = $this->get('/');
+use App\Models\Album;
+use App\Models\Artist;
 
-    $response->assertStatus(200);
+it('can have multiple albums', function () {
+    $artist = Artist::factory()
+        ->has(Album::factory()->count(3))
+        ->create();
+
+    expect($artist->albums)->toHaveCount(3);
 });
