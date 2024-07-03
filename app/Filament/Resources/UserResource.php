@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\PlaylistsRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\SubscriptionsRelationManager;
 use App\Models\User;
 use Filament\Forms\Components\Select;
@@ -76,6 +77,7 @@ class UserResource extends Resource
     {
         return [
             SubscriptionsRelationManager::class,
+            PlaylistsRelationManager::class,
         ];
     }
 

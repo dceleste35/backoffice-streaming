@@ -27,7 +27,6 @@ class SubscriptionsRelationManager extends RelationManager
                     ->label('Date de fin')
                     ->date(),
             ])
-            ->searchable(false)
             ->defaultSort('start_date', 'desc')
             ->filters([
                 //
