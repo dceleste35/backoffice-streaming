@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SubscriptionEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,6 +13,10 @@ class Subscription extends Model
 
     protected $fillable = [
         'name',
+    ];
+
+    protected $casts = [
+        'name' => SubscriptionEnum::class,
     ];
 
     public function users(): BelongsToMany
