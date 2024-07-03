@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ['free', 'standard', 'premium', 'lifetime'])->default('free');
+            $table->enum('name', ['free', 'standard', 'premium', 'lifetime']);
             $table->timestamps();
         });
     }

@@ -12,6 +12,24 @@ class SubscriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        Subscription::factory()->create(10);
+        Subscription::factory()->create([
+            'name' => 'free',
+            'price' => 0,
+        ]);
+
+        Subscription::factory()->create([
+            'name' => 'standard',
+            'price' => 10,
+        ]);
+
+        Subscription::factory()->create([
+            'name' => 'premium',
+            'price' => 20,
+        ]);
+
+        Subscription::factory()->create([
+            'name' => 'lifetime',
+            'price' => 100,
+        ]);
     }
 }
