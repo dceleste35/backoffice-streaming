@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Music;
 use App\Models\Playlist;
@@ -27,4 +28,12 @@ it('can have many genres', function () {
         ->create();
 
     expect($music->genres)->toHaveCount(3);
+});
+
+it('can have many artists', function () {
+    $music = Music::factory()
+        ->hasAttached(Artist::factory()->count(3))
+        ->create();
+
+    expect($music->artists)->toHaveCount(3);
 });
