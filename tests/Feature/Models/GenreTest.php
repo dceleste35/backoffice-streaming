@@ -1,7 +1,12 @@
 <?php
 
-test('example', function () {
-    $response = $this->get('/');
+use App\Models\Genre;
+use App\Models\Music;
 
-    $response->assertStatus(200);
+it('can have many music', function () {
+    $genre = Genre::factory()
+        ->hasAttached(Music::factory()->count(3))
+        ->create();
+
+    expect($genre->music)->toHaveCount(3);
 });
