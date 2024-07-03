@@ -17,6 +17,7 @@ class Subscription extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-            ->using(UserSubscription::class);
+            ->using(UserSubscription::class)
+            ->withPivot('start_date', 'end_date');
     }
 }
