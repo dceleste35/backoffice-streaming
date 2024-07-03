@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Music;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('music', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->bigInteger('duration');
-            $table->bigInteger('play_count')->default(0);
-            $table->timestamp('release_date')->nullable();
+        Schema::create('music_user', function (Blueprint $table) {
+            $table->foreignIdFor(Music::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->primary(['music_id', 'user_id']);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('music');
+        Schema::dropIfExists('music_user');
     }
 };
