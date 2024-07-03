@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Music;
+use App\Models\Playlist;
 use App\Models\User;
 
 it('can have many users', function () {
@@ -9,4 +10,12 @@ it('can have many users', function () {
         ->create();
 
     expect($music->users)->toHaveCount(3);
+});
+
+it('can have many playlists', function () {
+    $music = Music::factory()
+        ->hasAttached(Playlist::factory()->count(3))
+        ->create();
+
+    expect($music->playlists)->toHaveCount(3);
 });
