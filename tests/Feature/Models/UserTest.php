@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Music;
 use App\Models\Role;
 use App\Models\Subscription;
 use App\Models\User;
@@ -53,4 +54,12 @@ it('can have many playlists', function () {
     ]);
 
     expect($user->playlists)->toHaveCount(3);
+});
+
+it('can have many musics liked', function () {
+    $user = User::factory()
+        ->hasAttached(Music::factory()->count(3))
+        ->create();
+
+    expect($user->music)->toHaveCount(3);
 });
