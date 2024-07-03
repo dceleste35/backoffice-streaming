@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Music;
@@ -36,4 +37,12 @@ it('can have many artists', function () {
         ->create();
 
     expect($music->artists)->toHaveCount(3);
+});
+
+it('can have many albums', function () {
+    $music = Music::factory()
+        ->hasAttached(Album::factory()->count(3))
+        ->create();
+
+    expect($music->albums)->toHaveCount(3);
 });
