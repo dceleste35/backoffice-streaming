@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignIdFor(Artist::class)->constrained()->cascadeOnDelete();
+            $table->timestamp('release_date')->nullable();
             $table->timestamps();
         });
     }
