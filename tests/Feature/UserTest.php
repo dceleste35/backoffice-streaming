@@ -35,3 +35,22 @@ it('have a role', function () {
 
     expect($user->role->name)->toBe('user');
 });
+
+it('can have a playlist', function () {
+    $user = User::factory()->create();
+    $playlist = $user->playlists()->create(['title' => 'test']);
+
+    expect($playlist->title)->toBe('test');
+    expect($playlist->user)->toBeInstanceOf(User::class);
+});
+
+it('can have many playlists', function () {
+    $user = User::factory()->create();
+    $playlists = $user->playlists()->createMany([
+        ['title' => 'test1'],
+        ['title' => 'test2'],
+        ['title' => 'test3'],
+    ]);
+
+    expect($user->playlists)->toHaveCount(3);
+});
