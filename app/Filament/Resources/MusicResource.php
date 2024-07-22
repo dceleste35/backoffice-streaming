@@ -13,8 +13,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Support\Enums\Alignment;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class MusicResource extends Resource
@@ -61,14 +62,18 @@ class MusicResource extends Resource
                 ImageColumn::make('file_path')
                     ->disk('covers')
                     ->label('Cover'),
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('duration')
+                TextColumn::make('duration')
                     ->searchable()
                     ->dateTime('i:s'),
-                Tables\Columns\TextColumn::make('release_date')
+                TextColumn::make('release_date')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('play_count'),
+                TextColumn::make('users_count')->counts('users')
+                    ->label('Nombre de likes')
+                    ->alignment(Alignment::Center),
+                TextColumn::make('play_count')
+                    ->alignment(Alignment::Center),
             ])
             ->filters([
                 //

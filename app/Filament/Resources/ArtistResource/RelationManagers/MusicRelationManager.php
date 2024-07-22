@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ArtistResource\RelationManagers;
 
+use App\Filament\Resources\MusicResource;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -31,6 +32,8 @@ class MusicRelationManager extends RelationManager
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('users_count')->counts('users')
+                    ->label('Nombre de likes'),
             ])
             ->filters([
                 //
@@ -50,8 +53,12 @@ class MusicRelationManager extends RelationManager
                     ->action(fn (array $data) => $this->getOwnerRecord()->music()->attach($data['music_id'])),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation()
+                    ->label(''),
+                Tables\Actions\EditAction::make()
+                    ->label('')
+                    ->url(fn ($record) => MusicResource::getUrl('edit', ['record' => $record])),
             ])
             ->bulkActions([
                 //

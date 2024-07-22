@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MusicResource\RelationManagers;
 
+use App\Filament\Resources\ArtistResource;
 use App\Models\Artist;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -53,6 +54,9 @@ class ArtistsRelationManager extends RelationManager
                 Tables\Actions\DeleteAction::make()
                     ->label('')
                     ->requiresConfirmation(),
+                Tables\Actions\EditAction::make()
+                    ->label('')
+                    ->url(fn ($record) => ArtistResource::getUrl('edit', ['record' => $record])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
