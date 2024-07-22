@@ -32,7 +32,6 @@ class AlbumResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Titre')
-                    ->searchable()
                     ->required(),
                 Select::make('artist_id')
                     ->label('Artiste')
