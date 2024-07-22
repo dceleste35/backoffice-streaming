@@ -14,7 +14,6 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\Alignment;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -47,10 +46,9 @@ class MusicResource extends Resource
                     ->required()
                     ->native(false),
                 FileUpload::make('file_path')
-                    ->label('Image')
+                    ->label('Fichier audio')
                     ->disk('covers')
                     ->visibility('public')
-                    ->image()
                     ->columnStart(1),
             ]);
     }
@@ -59,9 +57,6 @@ class MusicResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('file_path')
-                    ->disk('covers')
-                    ->label('Cover'),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('duration')
