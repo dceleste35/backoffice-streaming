@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MusicResource\Pages;
+use App\Filament\Resources\MusicResource\RelationManagers\AlbumsRelationManager;
 use App\Filament\Resources\MusicResource\RelationManagers\ArtistsRelationManager;
 use App\Filament\Resources\MusicResource\RelationManagers\GenresRelationManager;
 use App\Models\Music;
@@ -83,6 +84,7 @@ class MusicResource extends Resource
         return [
             ArtistsRelationManager::class,
             GenresRelationManager::class,
+            AlbumsRelationManager::class,
         ];
     }
 
