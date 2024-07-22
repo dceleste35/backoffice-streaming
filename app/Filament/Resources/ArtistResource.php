@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArtistResource\Pages;
+use App\Filament\Resources\ArtistResource\RelationManagers\AlbumsRelationManager;
 use App\Filament\Resources\ArtistResource\RelationManagers\MusicRelationManager;
 use App\Models\Artist;
 use Filament\Forms\Components\TextInput;
@@ -60,6 +61,7 @@ class ArtistResource extends Resource
     {
         return [
             MusicRelationManager::class,
+            AlbumsRelationManager::class,
         ];
     }
 
