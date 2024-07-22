@@ -4,7 +4,6 @@ namespace App\Filament\Resources\GenreResource\RelationManagers;
 
 use App\Filament\Resources\MusicResource;
 use App\Models\Music;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -22,9 +21,7 @@ class MusicRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                //
             ]);
     }
 
