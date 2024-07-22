@@ -18,7 +18,13 @@ class AlbumResource extends Resource
 {
     protected static ?string $model = Album::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-play-circle';
+
+    protected static ?string $navigationLabel = 'Albums';
+
+    protected static ?string $pluralModelLabel = 'Albums';
+
+    protected static ?string $modelLabel = 'Album';
 
     public static function form(Form $form): Form
     {
@@ -26,6 +32,7 @@ class AlbumResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Titre')
+                    ->searchable()
                     ->required(),
                 Select::make('artist_id')
                     ->label('Artiste')
