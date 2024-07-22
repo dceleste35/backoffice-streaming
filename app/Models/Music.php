@@ -21,7 +21,7 @@ class Music extends Model
     ];
 
     protected $casts = [
-        'release_date' => 'datetime',
+        'release_date' => 'datetime:Y-m-d H:i:s',
     ];
 
     public function users(): BelongsToMany
