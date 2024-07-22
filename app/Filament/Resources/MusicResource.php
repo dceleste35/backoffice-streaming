@@ -45,6 +45,7 @@ class MusicResource extends Resource
                     ->required()
                     ->native(false),
                 FileUpload::make('file_path')
+                    ->label('Image')
                     ->disk('covers')
                     ->visibility('public')
                     ->image()

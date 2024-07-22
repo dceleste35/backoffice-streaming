@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AlbumResource\Pages;
+use App\Filament\Resources\AlbumResource\RelationManagers\MusicRelationManager;
 use App\Models\Album;
 use App\Models\Artist;
 use Filament\Forms\Components\DateTimePicker;
@@ -67,7 +68,7 @@ class AlbumResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MusicRelationManager::class,
         ];
     }
 
