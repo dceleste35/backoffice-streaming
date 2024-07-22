@@ -39,7 +39,8 @@ class MusicResource extends Resource
                 TimePicker::make('duration')
                     ->label('Durée')
                     ->required()
-                    ->formatStateUsing(fn (string $state) => gmdate('H:i:s', $state)),
+                    ->formatStateUsing(fn (?string $state) => gmdate('H:i:s', $state))
+                    ->default('0'),
                 DateTimePicker::make('release_date')
                     ->label('Date de sortie')
                     ->required()
