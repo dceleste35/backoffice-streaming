@@ -9,8 +9,6 @@ use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 
 class PlaylistsRelationManager extends RelationManager
 {
@@ -48,8 +46,7 @@ class PlaylistsRelationManager extends RelationManager
                     ->label(''),
                 Action::make('list')
                     ->label('')
-                    ->icon('heroicon-o-musical-note')
-                    ->modalContent(fn (Model $record): View => view('filament.music.music-list', ['playlist' => $record])),
+                    ->icon('heroicon-o-musical-note'),
             ])
             ->bulkActions([
                 //
