@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use App\Filament\Resources\PlaylistResource;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -45,10 +45,11 @@ class PlaylistsRelationManager extends RelationManager
             ])
             ->actions([
                 Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation()
                     ->label(''),
-                Action::make('list')
+                Tables\Actions\EditAction::make()
                     ->label('')
-                    ->icon('heroicon-o-musical-note'),
+                    ->url(fn ($record) => PlaylistResource::getUrl('edit', ['record' => $record])),
             ])
             ->bulkActions([
                 //
