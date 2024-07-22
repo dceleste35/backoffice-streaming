@@ -3,7 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArtistResource\Pages;
+use App\Filament\Resources\ArtistResource\RelationManagers\MusicRelationManager;
 use App\Models\Artist;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
@@ -25,7 +27,9 @@ class ArtistResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->label('Nom')
+                    ->required(),
             ]);
     }
 
@@ -55,7 +59,7 @@ class ArtistResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MusicRelationManager::class,
         ];
     }
 
