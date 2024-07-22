@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PlaylistResource\Pages;
+use App\Filament\Resources\PlaylistResource\RelationManagers\MusicRelationManager;
 use App\Models\Playlist;
 use App\Models\User;
 use Filament\Forms\Components\Select;
@@ -68,7 +69,7 @@ class PlaylistResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MusicRelationManager::class,
         ];
     }
 
