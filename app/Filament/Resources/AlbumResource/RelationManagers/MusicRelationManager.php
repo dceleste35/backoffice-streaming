@@ -34,6 +34,8 @@ class MusicRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Titre'),
+                Tables\Columns\TextColumn::make('users_count')->counts('users')
+                    ->label('Nombre de likes'),
             ])
             ->filters([
                 //
