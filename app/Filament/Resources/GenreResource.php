@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GenreResource\Pages;
+use App\Filament\Resources\GenreResource\RelationManagers\MusicRelationManager;
 use App\Models\Genre;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
@@ -60,7 +61,7 @@ class GenreResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MusicRelationManager::class,
         ];
     }
 
