@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'covers' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'covers',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

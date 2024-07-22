@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->bigInteger('duration');
             $table->bigInteger('play_count')->default(0);
+            $table->string('file_path')->nullable();
             $table->timestamp('release_date')->nullable();
             $table->timestamps();
         });
