@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use App\Filament\Resources\MusicResource;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -30,8 +31,8 @@ class MusicRelationManager extends RelationManager
             ])
             ->actions([
                 EditAction::make()
-                    ->label(''),
-                // ->url(fn (Model $record): string => MusicResource::getUrl('edit', ['record' => $record])), // TODO : waiting for MusicResource
+                    ->label('')
+                    ->url(fn (Model $record): string => MusicResource::getUrl('edit', ['record' => $record])),
             ])
             ->bulkActions([
                 //

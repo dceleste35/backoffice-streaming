@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\AlbumResource\RelationManagers;
+namespace App\Filament\Resources\ArtistResource\RelationManagers;
 
 use App\Filament\Resources\MusicResource;
-use App\Models\Music;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -15,13 +14,13 @@ class MusicRelationManager extends RelationManager
 {
     protected static string $relationship = 'music';
 
-    protected static ?string $title = 'Morceaux';
+    protected static ?string $title = 'Musiques';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -30,10 +29,9 @@ class MusicRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Titre'),
+                Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('users_count')->counts('users')
                     ->label('Nombre de likes'),
             ])
@@ -42,13 +40,13 @@ class MusicRelationManager extends RelationManager
             ])
             ->headerActions([
                 Action::make('add')
-                    ->label('Ajouter un morceau')
+                    ->label('Ajouter une musique')
                     ->form([
                         Forms\Components\Select::make('music_id')
-                            ->label('Morceau')
+                            ->label('Musique')
                             ->searchable()
                             ->options(
-                                Music::all()->pluck('title', 'id')
+                                \App\Models\Music::all()->pluck('title', 'id')
                             )
                             ->required(),
                     ])
@@ -56,15 +54,14 @@ class MusicRelationManager extends RelationManager
             ])
             ->actions([
                 Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation()
                     ->label(''),
                 Tables\Actions\EditAction::make()
                     ->label('')
                     ->url(fn ($record) => MusicResource::getUrl('edit', ['record' => $record])),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }
