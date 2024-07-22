@@ -2,19 +2,20 @@
 
 namespace App\Filament\Resources\MusicResource\RelationManagers;
 
-use App\Models\Artist;
+use App\Models\Genre;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ArtistsRelationManager extends RelationManager
+class GenresRelationManager extends RelationManager
 {
-    protected static string $relationship = 'artists';
+    protected static string $relationship = 'genres';
 
-    protected static ?string $title = 'Artistes';
+    protected static ?string $title = 'Genres';
 
     public function form(Form $form): Form
     {
@@ -27,27 +28,27 @@ class ArtistsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('Artiste')
+            ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                TextColumn::make('name'),
+                TextColumn::make('description'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
                 Action::make('add')
-                    ->label('Ajouter un artiste')
+                    ->label('Ajouter un genre')
                     ->form([
-                        Select::make('artist_id')
-                            ->label('Artiste')
+                        Select::make('genre_id')
+                            ->label('Genre')
                             ->searchable()
                             ->options(
-                                Artist::all()->pluck('name', 'id')
+                                Genre::all()->pluck('name', 'id')
                             )
                             ->required(),
                     ])
-                    ->action(fn (array $data) => $this->getOwnerRecord()->artists()->attach($data['artist_id'])),
-
+                    ->action(fn (array $data) => $this->getOwnerRecord()->genres()->attach($data)),
             ])
             ->actions([
                 Tables\Actions\DeleteAction::make()

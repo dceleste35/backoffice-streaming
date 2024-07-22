@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MusicResource\Pages;
 use App\Filament\Resources\MusicResource\RelationManagers\ArtistsRelationManager;
+use App\Filament\Resources\MusicResource\RelationManagers\GenresRelationManager;
 use App\Models\Music;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -60,7 +61,8 @@ class MusicResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('duration')
-                    ->searchable(),
+                    ->searchable()
+                    ->dateTime('i:s'),
                 Tables\Columns\TextColumn::make('release_date')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('play_count'),
@@ -80,6 +82,7 @@ class MusicResource extends Resource
     {
         return [
             ArtistsRelationManager::class,
+            GenresRelationManager::class,
         ];
     }
 
