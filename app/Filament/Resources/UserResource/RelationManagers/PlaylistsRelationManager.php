@@ -34,6 +34,8 @@ class PlaylistsRelationManager extends RelationManager
                 TextColumn::make('title')
                     ->searchable()
                     ->label('Nom de la playlist'),
+                TextColumn::make('music_count')->counts('music')
+                    ->label('Nombre de morceaux'),
             ])
             ->filters([
                 //

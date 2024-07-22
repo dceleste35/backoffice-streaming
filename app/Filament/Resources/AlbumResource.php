@@ -59,6 +59,9 @@ class AlbumResource extends Resource
                 Tables\Columns\TextColumn::make('release_date')
                     ->label('Date de sortie')
                     ->dateTime(),
+                Tables\Columns\TextColumn::make('music_count')->counts('music')
+                    ->label('Nombre de morceaux'),
+
             ])
             ->filters([
                 //
