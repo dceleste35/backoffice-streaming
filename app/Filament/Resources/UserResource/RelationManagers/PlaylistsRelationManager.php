@@ -6,9 +6,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 
 class PlaylistsRelationManager extends RelationManager
 {
@@ -39,13 +41,15 @@ class PlaylistsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                //
             ])
             ->actions([
-                ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ]),
+                Tables\Actions\DeleteAction::make()
+                    ->label(''),
+                Action::make('list')
+                    ->label('')
+                    ->icon('heroicon-o-musical-note')
+                    ->modalContent(fn (Model $record): View => view('music-list', ['playlist' => $record])),
             ])
             ->bulkActions([
                 //

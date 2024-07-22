@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\MusicRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\PlaylistsRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\SubscriptionsRelationManager;
 use App\Models\User;
@@ -78,6 +79,7 @@ class UserResource extends Resource
         return [
             SubscriptionsRelationManager::class,
             PlaylistsRelationManager::class,
+            MusicRelationManager::class,
         ];
     }
 
