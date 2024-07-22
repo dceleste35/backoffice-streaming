@@ -49,7 +49,7 @@ class PlaylistsRelationManager extends RelationManager
                 Action::make('list')
                     ->label('')
                     ->icon('heroicon-o-musical-note')
-                    ->modalContent(fn (Model $record): View => view('music-list', ['playlist' => $record])),
+                    ->modalContent(fn (Model $record): View => view('filament.music.music-list', ['playlist' => $record])),
             ])
             ->bulkActions([
                 //
